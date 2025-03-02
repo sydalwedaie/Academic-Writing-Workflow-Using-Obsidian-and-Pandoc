@@ -5,8 +5,8 @@ affiliation: "College Name, University Name"
 course: "Course Code: Course Title"
 instructor: "Instructor's Name"
 due-date: "Due Date"
-paper-abstract: "A 250 word summary. Not indented. Remove this property entirely if abstract not required. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates et consectetur omnis, illo veniam beatae nulla repudiandae deleniti fugiat tenetur, sit repellendus id ea placeat maiores reprehenderit."
-keywords: "Comma, seperated, list, of, keywords"
+paper-abstract: "A 250 word summary. Not indented. Remove this property entirely if abstract not required. Lorem ipsum dolor, sit amet consectetur adipisicing elit."
+keywords: "Comma, Seperated, List, Of, Keywords"
 ---
 
 <!-- This is a comment. It will not be exported. -->
@@ -17,19 +17,21 @@ Introduction starts here. APA does not required an introction heading. Lorem ips
 
 # APA Heading 1 (Centered, bold)
 
-Use level one headings at the start of each major section. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates et consectetur omnis, illo veniam beatae nulla repudiandae deleniti fugiat tenetur, sit repellendus id ea placeat maiores reprehenderit.
+Use level one headings at the start of each major section.
 
 ## APA Heading 2 (Flush left, bold)
 
-Use level two headings at the start of each subsection.Ea dolores quibusdam eius vel? Eos cupiditate quas eaque nostrum quia vitae consequuntur ratione, unde veniam, earum nemo architecto voluptates quam, necessitatibus tempore!
+Use level two headings at the start of each subsection.
 
 ### APA Heading 3 (Flush left, italic, bold)
 
-Use level three headings at the start of each sub-subsection .Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates et consectetur omnis, illo veniam beatae nulla repudiandae deleniti fugiat tenetur, sit repellendus id ea placeat maiores reprehenderit.
+Use level three headings at the start of each sub-subsection
 
-**APA Heading 4 (Indented, bold, ends with period).** Use markdown bold syntax for level 4 headings. Paragraph following level 4 starts on the same line. Ea dolores quibusdam eius vel? Eos cupiditate quas eaque nostrum quia vitae consequuntur ratione, unde veniam, earum nemo architecto voluptates quam, necessitatibus tempore!
+**APA Heading 4 (Indented, bold, ends with period).** Use markdown bold syntax for level 4 headings. Paragraph following level 4 starts on the same line.
 
-**_APA Heading 5 (Indented, italic, bold, ends with period.)_** Use markdown bold AND italic syntax together for level 5 headings. Paragraph following level 5 starts on the same line. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates et consectetur omnis, illo veniam beatae nulla repudiandae deleniti fugiat tenetur, sit repellendus id ea placeat maiores reprehenderit.
+**_APA Heading 5 (Indented, italic, bold, ends with period.)_** Use markdown bold AND italic syntax together for level 5 headings. Paragraph following level 5 starts on the same line.
+
+> Block quotes start with a `>` sign. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates et consectetur omnis, illo veniam beatae nulla repudiandae deleniti fugiat tenetur.
 
 <!-- Wrap inline math with single dollar signs  -->
 
@@ -51,6 +53,19 @@ _Figure description in italics_
 ![](./large-image.png)
 
 _Note:_ Figure notes.
+:::
+
+::: { custom-style="Figure" }
+
+**Table 1**
+
+_Table Description_
+
+| Col 1 | Col2 | Col 3 |
+| ----- | ---- | ----- |
+| one   | two  | three |
+| four  | five | six   |
+
 :::
 
 ---
