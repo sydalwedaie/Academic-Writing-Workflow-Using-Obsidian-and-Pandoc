@@ -31,7 +31,13 @@ Use level three headings at the start of each sub-subsection
 
 **_APA Heading 5 (Indented, italic, bold, ends with period.)_** Use markdown bold AND italic syntax together for level 5 headings. Paragraph following level 5 starts on the same line.
 
+## Block Quote
+
+The following is a block quote:
+
 > Block quotes start with a `>` sign. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates et consectetur omnis, illo veniam beatae nulla repudiandae deleniti fugiat tenetur.
+
+## Math
 
 <!-- Wrap inline math with single dollar signs  -->
 
@@ -42,6 +48,8 @@ This is inline math $y=2x^2$. The following is a math block.
 $$
 \int_a^b f(x)\,dx
 $$
+
+## Figures and Tables
 
 <!-- Wrap figures and their supporting text in fenced blocks, with custom-style set to "Figure". -->
 
