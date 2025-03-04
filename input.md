@@ -49,12 +49,22 @@ $$
 \int_a^b f(x)\,dx
 $$
 
+## Cross Referencing
+
+Refere to section [@sec:sec1] for details.
+Refer to section [@sec:sec2] for further details.
+
+This is section [@sec:sec1].
+This is section [@sec:sec2].
+
 ## Figures and Tables
+
+Refer to figure [@fig:large-image] and table [@tbl:example-table] for details.
 
 <!-- Wrap figures and their supporting text in fenced blocks, with custom-style set to "Figure". -->
 
 ::: { custom-style="Figure" }
-**Figure 1**
+**Figure [@fig:large-image]**
 
 _Figure description in italics_
 
@@ -65,7 +75,7 @@ _Note:_ Figure notes.
 
 ::: { custom-style="Figure" }
 
-**Table 1**
+**Table [@tbl:example-table]**
 
 _Table Description_
 
@@ -76,9 +86,21 @@ _Table Description_
 
 :::
 
+## Code
+
+Inline `function hello() { print 'hello' }`
+
+Block
+
+```
+function hello() {
+  print 'hello'
+}
+```
+
 ---
 
-<!-- Horizontal rule (---) are converted to page breaks. -->
+<!-- Horizontal rules (---) are converted to page breaks. -->
 <!-- Start the references section following a page break. -->
 <!-- Use heading level 1 for the references title. -->
 <!-- Use heading level 6 for each reference. -->
