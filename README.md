@@ -17,7 +17,7 @@ APA student papers need to be formatted in a specific way. I developed this work
 
 ## The Solution: Pandoc With Custom Template
 
-Pandoc is a universal document converted. It can convert between pretty much any format in any direction. It uses a default **template file** for the structure of the output (title, headers and footers, body, etc), and a default **styles file** for styling the document (font sizes, heading styles, etc). Both can be overridden with custom files. This repository provides these custom files, and a framework to write a paper completely in Markdown and have Pandoc convert it to a finished paper in DOCX format.
+Pandoc is a universal document converted. It can convert between pretty much any format in any direction. It uses a default **template file** for the structure of the output (title, headers and footers, body, etc), and a default **styles file** for styling the document (font sizes, heading styles, etc). Both can be overridden with custom files. This repository provides these custom files, some `lua` filters, and a framework to write a paper completely in Markdown and have Pandoc convert it to a finished paper in DOCX format.
 
 ## The Workflow
 
@@ -133,13 +133,21 @@ APA headings level 4 and 5 are different, as they are essentially the first line
 
 **Note:** There is no APA heading level 6. This is convenient, as markdown heading level 6 is reserved for the references in this framework.
 
+### Cross Referencing
+
+Cross-referencing is a way of linking different parts of a document to provide easy referencing and maintain consistency. A cross-reference points to an item like a figure, table, section, or citation elsewhere in the document by using a unique label. This ensures that if the document structure changes (like reordering sections or adding new figures), the references remain accurate without manual updates.
+
+This workflow uses a `lua` filter to add cross-referencing functionality. You will write references in the format `[@prefix:label]`, where prefix is a category (like fig for figures or table for tables) and label is the unique identifier for that item. Each prefix maintains its own independent numbering sequence. For example, `[@fig:chart1]` and `[@table:data1]` will increment separately. Whenever the same `[@prefix:label]` is used more than once, it will always refer to the same number.
+
+**Note:** `pandoc-crossref` can achieve a similar behavior. However, I could not make it work as per the APA guidelines, so I made my own!
+
 ### Figures
 
 Each figure (or table, diagram, etc.) along with the associated information must be wrapped in a fenced block as per this example:
 
 ```md
 ::: { custom-style="Figure" }
-**Figure #**
+**Figure [@fig:label]**
 
 _Figure description in italics_
 
@@ -152,7 +160,8 @@ _Note:_ Figure notes.
 Note the following
 
 - A fenced block is created by wrapping the content in triple colons (`:::`).
-- A custom style is set to make the figure block flush left, otherwise it will output is normal text (indented).
+- A custom style is set to make the figure block flush left, otherwise it will output as normal text (indented).
+- You can use the automatic cross-reference functionality, using the `[@prefix:label]` syntax, or manually insert a number.
 - Observe the blank lines between the 4 components. This is mandatory to have them ouput on seperate lines.
 - Do not write an `Alt` text for the image (inside the brackets). Pandoc will output this as a caption below the image, which is not an APA standard.
 
@@ -177,5 +186,3 @@ Start the section with a level 1 heading, and use level 6 heading for each refer
 ## Limitations
 
 I avoided using `citeproc` for automatically generating a bibliography based on in-text citations. While sweet, I found it too overkill for simple student papers. You will have to import your references in a reference manager and link it to where you write your paper. It means you will have to keep maintaining yet another application, something that my workflow tried to avoid. What this workflow does is to properly display the references with hanging indents, which is tricky to setup in a word processor.
-
-`pandoc-crossref` is a nice plugin which allows automatic numbering of figures and cross-referencing them. Basically, you will label your figures, and refer to them in your text using those labels. When you export, they will be automatically numbered and referenced. Unfortunately, I could not make it work as per APA guidelines.
