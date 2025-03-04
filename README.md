@@ -1,4 +1,4 @@
-# Pandoc-Based Setup to Convert Markdown to Properly Formated APA Student Paper
+# Pandoc-Based Setup to Convert Markdown to Properly Formatted APA Student Paper
 
 APA student papers need to be formatted in a specific way. I developed this workflow to allow students to write their papers in plain text, and have them automatically converted to a properly formatted paper based on APA guidelines.
 
@@ -17,7 +17,7 @@ APA student papers need to be formatted in a specific way. I developed this work
 
 ## The Solution: Pandoc With Custom Template
 
-Pandoc is a universal document converted. It can convert between pretty much any format in any direction. It uses a default **template file** for the structure of the output (title, headers and footers, body, etc), and a default **styles file** for styling the document (font sizes, heading styles, etc). Both can be overridden with custom files. This repository provides these custom files, some `lua` filters, and a framework to write a paper completely in Markdown and have Pandoc convert it to a finished paper in DOCX format.
+Pandoc is a universal document converter. It can convert between pretty much any format in any direction. It uses a default **template** file for the structure of the output (title, headers and footers, body, etc), and a default **styles** file for styling the document (font sizes, heading styles, etc). Both can be overridden with custom files. This repository provides these custom files, some `lua` filters, and a framework to write a paper completely in Markdown and have Pandoc convert it to a finished paper in DOCX format.
 
 ## The Workflow
 
@@ -47,7 +47,7 @@ The following is the basic syntax you will use to write an APA paper. Refer to [
 
 ### Headings
 
-Start a heading with 1 to 6 hash (`#`) characters, corresponding to headings level 1 to 6 .
+Start a heading with 1 to 6 hash (`#`) characters, corresponding to headings level 1 to 6.
 Put blank lines above and below each heading.
 
 ```md
@@ -60,7 +60,7 @@ Put blank lines above and below each heading.
 
 ### Block Quotes
 
-Start the paragraph with a `>` and a space. Put blank lines above a below.
+Start the paragraph with a `>` character and a space. Put blank lines above a below.
 
 ```md
 > This is a block quote
@@ -68,7 +68,7 @@ Start the paragraph with a `>` and a space. Put blank lines above a below.
 
 ### Lists
 
-Start each item with a dash (`-`) and a space. Repeat for each item.
+Start each item with a dash (`-`) character and a space. Repeat for each item.
 
 ```md
 - item 1
@@ -76,7 +76,7 @@ Start each item with a dash (`-`) and a space. Repeat for each item.
 - item 3
 ```
 
-For ordered lists, use numbers and a period
+For ordered lists, use numbers and a period.
 
 ```md
 1. item 1
@@ -84,30 +84,30 @@ For ordered lists, use numbers and a period
 3. item 3
 ```
 
-**Note:** APA discourages the use of lists in student papers. You will want to write in paragraph format most of the times.
+**Note:** APA discourages the use of lists in student papers. You will want to write in paragraph format most of the time.
 
-**Note:** If a list item starts with a number and a period, put a backslash (`\`) before the period to _escape_ it (otherwise it will be interpretted as a list number in an ordered list).
+**Note:** If a list item starts with a number and a period, put a backslash (`\`) before the period to _escape_ it (otherwise it will be interpreted as a list number in an ordered list).
 
 ```md
 - 2020\. What a year!
 - 2021\. Recovery starts.
 ```
 
-You can do this anytime you want to literally display a character that is used for a markdown syntax. So `\*` would output as `*`.
+You can do this anytime you want to literally display a character that is normally used for a markdown syntax. So `\*` would output as `*`.
 
 ## The Framework
 
-The workflow expects an input markdown file with a front matter. The markdown syntax above is used, with each some syntax mapped to specific areas of an APA paper.
+The workflow expects an input markdown file with a front matter. The markdown syntax above is used, with some syntax mapped to specific areas of an APA paper.
 
 ### YAML Front Matter
 
-The front matter holds information for the cover page and the Abstract.
+The front matter holds information for the cover page and the abstract.
 
 Note the following:
 
 - The order of fields doesn't matter.
 - The title provided here will be automatically inserted in the cover page as well as on top of the first body page.
-- If your paper doesn't need an abstract, remove the “paper-abstract” field entirely (including the key itself). An empty “paper-abstract” field would result in a blank page.
+- If your paper doesn't need an abstract, remove the “paper-abstract” field entirely (including the key itself). An empty "paper-abstract" field would result in a blank page.
 - YAML is sensitive to white space. Do not leave blank lines inside the front matter.
 - Wrap all values in double quotes to avoid potential issues.
 
@@ -123,12 +123,12 @@ APA headings 1, 2, and 3 correspond respectively to markdown headings level 1, 2
 ### APA Heading 3
 ```
 
-APA headings level 4 and 5 are different, as they are essentially the first line of a paragraph and are following by a period. They are both written as bold text, with heading level 5 **also** in italic.
+APA headings level 4 and 5 are different, as they are essentially the first line of a paragraph and are followed by a period. They are both written as bold text, with heading level 5 **also** in italics.
 
 ```md
 **APA Heading 4.** Paragraph starts on the same line
 
-**_APA Heading 5_** Paragraph starts on the same line
+**_APA Heading 5_.** Paragraph starts on the same line
 ```
 
 **Note:** There is no APA heading level 6. This is convenient, as markdown heading level 6 is reserved for the references in this framework.
@@ -137,13 +137,13 @@ APA headings level 4 and 5 are different, as they are essentially the first line
 
 Cross-referencing is a way of linking different parts of a document to provide easy referencing and maintain consistency. A cross-reference points to an item like a figure, table, section, or citation elsewhere in the document by using a unique label. This ensures that if the document structure changes (like reordering sections or adding new figures), the references remain accurate without manual updates.
 
-This workflow uses a `lua` filter to add cross-referencing functionality. You will write references in the format `[@prefix:label]`, where prefix is a category (like fig for figures or table for tables) and label is the unique identifier for that item. Each prefix maintains its own independent numbering sequence. For example, `[@fig:chart1]` and `[@table:data1]` will increment separately. Whenever the same `[@prefix:label]` is used more than once, it will always refer to the same number.
+This workflow uses a `lua` filter to add cross-referencing functionality. You will write references in the format `[@prefix:label]`, where _prefix_ is a category (like fig for figures or table for tables) and _label_ is the unique identifier for that item. Each prefix maintains its own independent numbering sequence. For example, `[@fig:chart1]` and `[@table:data1]` will increment separately. Whenever the same `[@prefix:label]` is used more than once, it will always refer to the same number.
 
 **Note:** `pandoc-crossref` can achieve a similar behavior. However, I could not make it work as per the APA guidelines, so I made my own!
 
 ### Figures
 
-Each figure (or table, diagram, etc.) along with the associated information must be wrapped in a fenced block as per this example:
+Each figure (or table, diagram, etc.) along with the associated information should be wrapped in a fenced block as per this example:
 
 ```md
 ::: { custom-style="Figure" }
@@ -160,14 +160,14 @@ _Note:_ Figure notes.
 Note the following
 
 - A fenced block is created by wrapping the content in triple colons (`:::`).
-- A custom style is set to make the figure block flush left, otherwise it will output as normal text (indented).
-- You can use the automatic cross-reference functionality, using the `[@prefix:label]` syntax, or manually insert a number.
-- Observe the blank lines between the 4 components. This is mandatory to have them ouput on seperate lines.
+- A custom style is set to make the figure block flush left, otherwise, it will output as normal text (indented).
+- You can use the automatic cross-reference functionality using the `[@prefix:label]` syntax, or manually insert a number.
+- Observe the blank lines between the 4 components. This is mandatory to have them output on separate lines.
 - Do not write an `Alt` text for the image (inside the brackets). Pandoc will output this as a caption below the image, which is not an APA standard.
 
 ### References
 
-The references section should follow a horizontal rule, denoted with tripple dashes. The rule will be converted to a _page break_ in the final paper.
+Structure this section as per the following:
 
 ```md
 ---
@@ -179,10 +179,15 @@ The references section should follow a horizontal rule, denoted with tripple das
 ###### Reference 2
 ```
 
-Note the blank lines between each component.
+Note the following:
 
-Start the section with a level 1 heading, and use level 6 heading for each reference. The styles are set in such a way that convert level 6 headings to regular text with hanging indent.
+- The references section should start with a horizontal rule, denoted with triple dashes. The rule will be converted to a _page break_ in the final paper.
+- Title the section with a level 1 heading.
+- Use level 6 heading for each reference. The styles are set in such a way that convert level 6 headings to regular text with hanging indent.
+- Put blank lines between each component.
 
 ## Limitations
 
-I avoided using `citeproc` for automatically generating a bibliography based on in-text citations. While sweet, I found it too overkill for simple student papers. You will have to import your references in a reference manager and link it to where you write your paper. It means you will have to keep maintaining yet another application, something that my workflow tried to avoid. What this workflow does is to properly display the references with hanging indents, which is tricky to setup in a word processor.
+I avoided using `citeproc` for automatically generating a bibliography based on in-text citations. While sweet, I found it too overkill for simple student papers. You will have to import your references into a reference manager and link it to where you write your paper. It means you will have to keep maintaining yet another application, something that my workflow tried to avoid. What this workflow does is to properly display the references with hanging indents, which is tricky to set up in a word processor.
+
+The reference document is the only way to style the output when exporting to DOCX. If you need to change the styles, you will have to manually edit the `custom-reference.docx` file and ensure the styles are saved under appropriate names.
