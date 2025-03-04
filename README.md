@@ -8,7 +8,7 @@ APA student papers need to be formatted in a specific way. I developed this work
 - An APA paper follows very specific formatting from text styles to paper layouts, which are all labor intensive to do in a word processor.
 - Writing math is basically a nightmare!
 
-## The Goal:
+## The Goal: Everything in plain text
 
 - Write in Markdown. Focus on semantics instead of styles.
 - Allow easy copy-pasting to and from a grammar and plagiarism checker, without worrying about formatting issues and in-text assets (images, math formalae, tables, etc.)
@@ -94,6 +94,32 @@ For ordered lists, use numbers and a period.
 ```
 
 You can do this anytime you want to literally display a character that is normally used for a markdown syntax. So `\*` would output as `*`.
+
+### Math
+
+Wrap inline math with single dollar signs: `$y=2x^2$`.
+
+Wrap math blocks in double dollar signs:
+
+```md
+$$
+\int_a^b f(x)\,dx
+$$
+```
+
+You can use simple math or LaTex. Pandoc will convert them to beautiful equations.
+
+### Code
+
+Wrap inline code with single backticks: `` `print('hello world')` ``.
+
+Wrap code blocks in triple backticks, and optionally specify the language:
+
+````md
+```python
+print('hello world')
+```
+````
 
 ## The Framework
 
